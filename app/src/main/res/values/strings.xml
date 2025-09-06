@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">강의실 찾기</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">dashboard</string>
+    <string name="title_notifications">notifications</string>
+    <string name="search_hint">hint</string>
+
+    <string name="uuid">UUID</string>
+    <string name="major">MAJOR</string>
+    <string name="minor">MINOR</string>
+    <string name="measured_power">Measured Distance</string>
+    <string name="transimssion_power">Transmission Power</string>
+    <string name="broadcasting_interval">Broadcasting Interval</string>
+    <string name="serial_id">Serial Number</string>
+    <string name="ibeacon_name">iBeacon Name</string>
+    <string name="connection_mode">Connection Mode</string>
+    <string name="restart_password">Reboot Password</string>
+    <string name="off">Power Off</string>
+    <string name="model">Mode</string>
+    <string name="sys_serial_id">System Serial Id</string>
+    <string name="setting">Setting</string>
+    <string name="save">save</string>
+    <string name="connecting">Connecting:</string>
+    <string name="manufacturer_name">Manufacturer</string>
+    <string name="hardware_revision">Hardware</string>
+    <string name="firmware_revision">Firmware</string>
+    <string name="software_revision">Software</string>
+    <string name="system_id">System Id</string>
+    <string name="regulatorycertifactiondata">Certifaction</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="map_image">Building Map Image</string>
+
+    <string name="powerofftip">After the power off need to press the button to boot again, if your device does not have a button will not boot!</string>
+    <string name="spinner_prompt">요일 선택</string>
+    <string-array name="weekdays">
+        <item>월</item>
+        <item>화</item>
+        <item>수</item>
+        <item>목</item>
+        <item>금</item>
+    </string-array>
+</resources>

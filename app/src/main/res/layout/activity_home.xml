@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- 제목 텍스트뷰 -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="남서울대학교 캠퍼스 앱"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 지도 버튼 -->
+    <ImageButton
+        android:id="@+id/mapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_map"
+        android:contentDescription="지도 버튼"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 시간표 및 강의실 찾기 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/timetableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간표"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/roomFinderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의실 찾기" />
+    </LinearLayout>
+
+</LinearLayout>

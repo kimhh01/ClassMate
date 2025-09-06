@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282060390049",
+    "project_id": "namsoueluv",
+    "storage_bucket": "namsoueluv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282060390049:android:93582b357638c1a08e3ae0",
+        "android_client_info": {
+          "package_name": "com.example.navermapsample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNjk4vAjq70tfvgt9D9XyO9zJRKnDV1Wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

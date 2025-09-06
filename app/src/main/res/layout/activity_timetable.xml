@@ -1,0 +1,218 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 상단 버튼 그룹 -->
+    <LinearLayout
+        android:id="@+id/btnGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <!-- '+' 버튼 -->
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_input_add" />
+
+        <!-- 연필 버튼 -->
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_edit"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- 시간표 스크롤 가능 영역 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btnGroup">
+
+        <com.example.navermapsample.CustomGridLayout
+            android:id="@+id/gridTimetable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="6"
+            android:rowCount="24"
+            android:padding="8dp">
+
+            <!-- 요일 헤더 -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:gravity="center"
+                android:text="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="월"
+                android:layout_columnWeight="1"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:gravity="center"
+                android:layout_columnWeight="1"
+                android:background="@android:color/darker_gray"/>
+
+            <!-- 시간 및 빈 셀 -->
+            <!-- 9시 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <!-- 10시 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <!-- 11시 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <!-- 계속 추가 -->
+            <!-- 12시 ~ 23시까지 반복 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23"
+                android:gravity="center" />
+
+            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_columnSpan="5" />
+
+        </com.example.navermapsample.CustomGridLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 수업명 입력 -->
+    <EditText
+        android:id="@+id/editClassName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="수업명"
+        android:inputType="text" />
+
+    <!-- 교수명 입력 -->
+    <EditText
+        android:id="@+id/editProfessorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="교수명"
+        android:inputType="text" />
+
+    <!-- 장소 입력 추가 -->
+    <EditText
+        android:id="@+id/editLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="장소"
+        android:inputType="text" />
+
+    <!-- 요일 선택 -->
+    <Spinner
+        android:id="@+id/spinnerDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/weekdays"
+        android:prompt="@string/spinner_prompt" />
+
+    <!-- 시작 시간 및 종료 시간 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/textStartTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="시작 시간: 00:00"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/textEndTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="종료 시간: 00:00"
+            android:padding="8dp" />
+    </LinearLayout>
+</LinearLayout>
