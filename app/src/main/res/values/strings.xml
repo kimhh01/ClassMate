@@ -34,12 +34,4 @@
     <string name="map_image">Building Map Image</string>
 
     <string name="powerofftip">After the power off need to press the button to boot again, if your device does not have a button will not boot!</string>
-    <string name="spinner_prompt">요일 선택</string>
-    <string-array name="weekdays">
-        <item>월</item>
-        <item>화</item>
-        <item>수</item>
-        <item>목</item>
-        <item>금</item>
-    </string-array>
 </resources>

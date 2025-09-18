@@ -36,7 +36,6 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.location.LastLocationRequest
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
@@ -72,23 +71,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         "디자인정보관" to LatLng(36.9095069, 127.1455334)
     )
 
-    // 필터 데이터: 이름과 좌표
-    private val cafeLocations = listOf(
-        "그라찌에" to LatLng(36.9075, 127.1430),
-        "브레덴콕" to LatLng(36.9080, 127.1440),
-        "ing" to LatLng(36.9089,127.1400)
-    )
-
-    private val restroomLocations = listOf(
-        "Restroom A" to LatLng(36.9065, 127.1420),
-        "Restroom B" to LatLng(36.9095, 127.1450)
-    )
-
-    private val smokingAreaLocations = listOf(
-        "Smoking Area A" to LatLng(36.9078, 127.1435),
-        "Smoking Area B" to LatLng(36.9082, 127.1445)
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Binding 초기화
@@ -101,10 +83,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         // ActionBarDrawerToggle 설정
-        val drawerToggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
+        val drawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
         // 토글 버튼 아이콘 색상 설정
         drawerToggle.drawerArrowDrawable.color = Color.WHITE
@@ -124,8 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         // 검색창(AutoCompleteTextView) 찾기
-        val searchAutoCompleteTextView: AutoCompleteTextView =
-            findViewById(R.id.autoCompleteTextView)
+        val searchAutoCompleteTextView: AutoCompleteTextView = findViewById(R.id.autoCompleteTextView)
 
         // AutoCompleteTextView에 어댑터 설정
         val locations = locationsMap.keys.toList()
@@ -154,22 +133,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         resetMarkersButton.setOnClickListener {
             clearPreviousMarkerAndRoute()
             Toast.makeText(this, "검색결과가 삭제되었습니다", Toast.LENGTH_SHORT).show()
-        }
-
-        val filterCafeButton: Button = findViewById(R.id.filterCafe)
-        val filterRestroomButton: Button = findViewById(R.id.filterRestroom)
-        val filterSmokingButton: Button = findViewById(R.id.filterSmoking)
-
-        filterCafeButton.setOnClickListener {
-            updateMarkers(cafeLocations, "카페")
-        }
-
-        filterRestroomButton.setOnClickListener {
-            updateMarkers(restroomLocations, "화장실")
-        }
-
-        filterSmokingButton.setOnClickListener {
-            updateMarkers(smokingAreaLocations, "흡연장")
         }
     }
 
@@ -204,8 +167,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // 키보드를 숨기는 함수
     private fun hideKeyboard(view: View) {
-        val inputMethodManager =
-            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
@@ -213,8 +175,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initMapView() {
         binding.stationMap.getMapAsync { naverMap ->
             this.naverMap = naverMap
-            locationSource =
-                FusedLocationSource(this@MainActivity, LOCATION_PERMISSION_REQUEST_CODE)
+            locationSource = FusedLocationSource(this@MainActivity, LOCATION_PERMISSION_REQUEST_CODE)
             naverMap.locationSource = locationSource
             naverMap.uiSettings.isLocationButtonEnabled = true
             naverMap.locationTrackingMode = LocationTrackingMode.Follow
@@ -241,11 +202,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             permissions.getOrDefault(android.Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
                 initMapView()
             }
-
             permissions.getOrDefault(android.Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                 initMapView()
             }
-
             else -> {
                 Toast.makeText(this, "권한 없음", Toast.LENGTH_SHORT).show()
             }
@@ -284,15 +243,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, MainActivity2::class.java)
                 startActivity(intent)
             }
-
             R.id.nav_profile -> {
                 // Handle the profile action
-                Toast.makeText(
-                    this, "현재 실내에서 강의실 찾기는 개발중입니다\n\n" +
-                            "추후 공개될 예정입니다", Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "현재 실내에서 강의실 찾기는 개발중입니다\n\n"+
+                        "추후 공개될 예정입니다", Toast.LENGTH_SHORT).show()
             }
-
             R.id.nav_help -> {
                 val intent = Intent(this, Help::class.java)
                 startActivity(intent)
@@ -316,30 +271,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val service = retrofit.create(NaverDirectionsApi::class.java)
             val call = service.getDrivingRoute(
                 start, goal,
-                clientId = "fv6ftsph28",
-                clientSecret = "n3G5R7NRT1r8UkbffCZOiDvgxZQI9zAApKwYBYTB"
+                clientId = "**",
+                clientSecret = "***"
             )
             call.enqueue(object : Callback<DirectionsResponse> {
-                override fun onResponse(
-                    call: Call<DirectionsResponse>,
-                    response: Response<DirectionsResponse>
-                ) {
+                override fun onResponse(call: Call<DirectionsResponse>, response: Response<DirectionsResponse>) {
                     if (response.isSuccessful) {
                         response.body()?.route?.trafast?.get(0)?.path?.let { path ->
                             displayRoute(path)
                         } ?: run {
-                            Toast.makeText(this@MainActivity, "경로를 찾지 못하였습니다.", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(this@MainActivity, "경로를 찾지 못하였습니다.", Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        Toast.makeText(this@MainActivity, "경로를 찾지 못하였습니다.", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this@MainActivity, "경로를 찾지 못하였습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<DirectionsResponse>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {
@@ -357,49 +306,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         polylineOverlay.map = naverMap
         currentPolyline = polylineOverlay
     }
-
-    // 마커를 업데이트할 때 클릭 리스너 추가
-    private fun updateMarkers(locations: List<Pair<String, LatLng>>, category: String) {
-        // 기존 마커 삭제
-        markers.forEach { it.map = null }
-        markers.clear()
-
-        // 새 마커 추가
-        locations.forEach { (name, location) ->
-            val marker = Marker().apply {
-                position = location
-                captionText = name // 마커에 이름 표시
-                map = naverMap
-                // 마커 클릭 리스너 설정
-                setOnClickListener {
-                    showMarkerInfoDialog(name, location)
-                    true  // 클릭 이벤트 처리 완료
-                }
-            }
-            markers.add(marker)
-        }
-
-        // 지도 카메라 이동 (첫 번째 마커 기준)
-        if (locations.isNotEmpty()) {
-            naverMap.moveCamera(CameraUpdate.scrollTo(locations[0].second))
-            naverMap.moveCamera(CameraUpdate.zoomTo(16.0))
-        }
-
-        Toast.makeText(this, "$category 필터 적용", Toast.LENGTH_SHORT).show()
-    }
-
-    // 마커 클릭 시 정보 표시용 다이얼로그 생성
-    private fun showMarkerInfoDialog(name: String, location: LatLng) {
-        val dialogBuilder = AlertDialog.Builder(this)
-        dialogBuilder.setTitle("장소 정보")
-            .setMessage("장소 이름: $name\n위도: ${location.latitude}\n경도: ${location.longitude}")
-            .setPositiveButton("확인") { dialog, _ ->
-                dialog.dismiss()
-            }
-        val dialog = dialogBuilder.create()
-        dialog.show()
-    }
-
 }
 
 interface NaverDirectionsApi {

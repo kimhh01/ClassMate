@@ -33,6 +33,7 @@ import com.minew.beaconset.MinewBeaconConnectionListener;
 import com.minew.beaconset.MinewBeaconManager;
 import com.minew.beaconset.MinewBeaconManagerListener;
 
+
 import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -57,7 +58,7 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // 액티비티가 생성될 때 호출됨.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         initView();
@@ -67,7 +68,7 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
         initPermission();
     }
 
-    private void initView() {
+    private void initView() { // UI요소를 설정하는 함수
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -109,15 +110,15 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
                     for (MinewBeacon beacon : beacons) {
                         String uuid = beacon.getUuid();
                         Log.d(TAG, "Detected beacon UUID: " + uuid);
-
-                        if ("E2C56DB5-DFFB-48D2-B060-D0F5A71096E0".equals(uuid)) {
+                        mRecycle.setVisibility(View.GONE); // 리사이클러 뷰(비콘 리스트)의 아이템을 보이지 않게 설정.
+                        if ("*1".equals(uuid)) {
                             Log.d(TAG, "Launching BeaconImageActivity for UUID: " + uuid);
                             Intent intent = new Intent(MainActivity2.this, BeaconImageActivity.class);
                             startActivity(intent);
                             imageDisplayed = true;
                             progressDialog.dismiss();
                             break;
-                        } else if ("E2C56DB5-DFFB-48D2-B060-D0F5A71096E1".equals(uuid)) {
+                        } else if ("*2".equals(uuid)) {
                             Log.d(TAG, "Launching BeaconImageActivity2 for UUID: " + uuid);
                             Intent intent = new Intent(MainActivity2.this, BeaconImageActivity2.class);
                             startActivity(intent);
@@ -146,7 +147,7 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
         progressDialog.show();
     }
 
-    private void checkBluetooth() {
+    private void checkBluetooth() { // 블루투스 상태 체크, 블루투스가 꺼져 있으면 활성화 유도.
         BluetoothState bluetoothState = mMinewBeaconManager.checkBluetoothState();
         switch (bluetoothState) {
             case BluetoothStateNotSupported:
@@ -165,9 +166,9 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
     private void initListener() {
         mAdapter.setOnItemClickLitener(new BeaconListAdapter.OnItemClickLitener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position) { // 리사이클러뷰에서 항목을 터치했을 때의 동작.
                 mpDialog.setMessage(getString(R.string.connecting) + mAdapter.getData(position).getName());
-                mpDialog.show();
+//                mpDialog.show(); // 사용자가 비콘 설정에 접근 못하도록 주석 처리함.
                 mMinewBeaconManager.stopScan();
                 MinewBeacon minewBeacon = mAdapter.getData(position);
                 MinewBeaconConnection minewBeaconConnection = new MinewBeaconConnection(MainActivity2.this, minewBeacon);
@@ -182,7 +183,7 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void initPermission() {
+    private void initPermission() { // 블루투스 권한 요청
         String[] requestPermissions;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             requestPermissions = new String[]{
@@ -243,7 +244,7 @@ public class MainActivity2 extends AppCompatActivity implements ActivityCompat.O
         }
     }
 
-    MinewBeaconConnectionListener minewBeaconConnectionListener = new MinewBeaconConnectionListener() {
+    MinewBeaconConnectionListener minewBeaconConnectionListener = new MinewBeaconConnectionListener() { // 비콘 연결 상태를 처리하는 리스너.
         @Override
         public void onChangeState(MinewBeaconConnection connection, ConnectionState state) {
             switch (state) {

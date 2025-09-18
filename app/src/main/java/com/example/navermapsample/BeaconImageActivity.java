@@ -32,21 +32,18 @@ public class BeaconImageActivity extends AppCompatActivity {
     private ImageButton searchButton;
     private ImageButton backButton; // Add ImageButton for back navigation
     private RelativeLayout parentLayout;
-    private View redDot;
-
     private Bitmap mapBitmap;
     private Bitmap pathBitmap;
 
     private int imageViewWidth;
     private int imageViewHeight;
-    private static final float MIRICANVAS_ITEM_COPY_KEY = 0.5f; // Replace 0.5f with the appropriate value
-
+    private static final float MIRICANVAS_ITEM_COPY_KEY = 0.5f; // 적절한 값으로 교체
 
     private ProgressDialog progressDialog;
 
     private void showToastWithCustomDuration(final Context context, final String message, final int duration) {
         final Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300); // Set Toast position
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300); // 토스트 위치 설정
 
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -56,7 +53,7 @@ public class BeaconImageActivity extends AppCompatActivity {
             public void run() {
                 if (System.currentTimeMillis() - startTime < duration) {
                     toast.show();
-                    handler.postDelayed(this, 3500); // Toast.LENGTH_SHORT duration is approximately 3.5 seconds
+                    handler.postDelayed(this, 3500); // 토스트의 지속시간
                 } else {
                     toast.cancel();
                 }
@@ -95,6 +92,7 @@ public class BeaconImageActivity extends AppCompatActivity {
                 }
             });
         }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -107,22 +105,16 @@ public class BeaconImageActivity extends AppCompatActivity {
             finish();  // 현재 액티비티를 종료합니다.
         });
 
-
-
-
-        // Set OnClickListener for searchButton
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String input = searchEditText.getText().toString();
-                if (!input.isEmpty()) {
-                    try {
-                        int number = Integer.parseInt(input);
-                        showPathToRoom(number);
-                        hideKeyboard();
-                    } catch (NumberFormatException e) {
-                        Toast.makeText(BeaconImageActivity.this, "잘못된 강의실 번호를 입력하였습니다. 다시 입력하세요", Toast.LENGTH_SHORT).show();
-                    }
+        // 검색 버튼 클릭 리스너 설정
+        searchButton.setOnClickListener(v -> {
+            String input = searchEditText.getText().toString();
+            if (!input.isEmpty()) {
+                try {
+                    int number = Integer.parseInt(input);
+                    showPathToRoom(number);
+                    hideKeyboard();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(BeaconImageActivity.this, "잘못된 강의실 번호를 입력하였습니다. 다시 입력하세요", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,37 +133,39 @@ public class BeaconImageActivity extends AppCompatActivity {
 
         pathBitmap = mapBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
-        float endXRatio = MIRICANVAS_ITEM_COPY_KEY, endYRatio = 0.47f;
-        float startXRatio = 0.16f, startYRatio = 0.47f;
+        float startXRatio = 0.15f; // 출발 지점의 X 비율
+        float startYRatio = 0.47f; // 출발 지점의 Y 비율
+        float endXRatio = 0.16f; // 도착 지점의 X 비율
+        float endYRatio = 0.47f; // 도착 지점의 Y 비율
 
         switch (roomNumber) {
             case RoomConstants.ROOM_201:
                 endXRatio = 0.96f;
-                endYRatio = 0.5f;
+                endYRatio = 0.54f;
                 break;
             case RoomConstants.ROOM_202:
                 endXRatio = 0.51f;
-                endYRatio = 0.455f;
+                endYRatio = 0.42f;
                 break;
             case RoomConstants.ROOM_203:
                 endXRatio = 0.75f;
-                endYRatio = 0.5f;
+                endYRatio = 0.54f;
                 break;
             case RoomConstants.ROOM_205:
                 endXRatio = 0.71f;
-                endYRatio = 0.5f;
+                endYRatio = 0.54f;
                 break;
             case RoomConstants.ROOM_204:
                 endXRatio = 0.46f;
-                endYRatio = 0.455f;
+                endYRatio = 0.42f;
                 break;
             case RoomConstants.ROOM_206:
                 endXRatio = 0.43f;
-                endYRatio = 0.455f;
+                endYRatio = 0.42f;
                 break;
             case RoomConstants.ROOM_209:
                 endXRatio = 0.475f;
-                endYRatio = 0.5f;
+                endYRatio = 0.54f;
                 break;
             case RoomConstants.ROOM_301:
             case RoomConstants.ROOM_302:
@@ -181,9 +175,7 @@ public class BeaconImageActivity extends AppCompatActivity {
             case RoomConstants.ROOM_308:
             case RoomConstants.ROOM_309:
             case RoomConstants.ROOM_310:
-                showToastWithCustomDuration(this, "현재 층은 2층입니다 "+" 3층으로 올라가세요", 10000);
-                endXRatio = 0.16f;
-                endYRatio = 0.5f;
+                showToastWithCustomDuration(this, "현재 층은 2층입니다. 3층으로 올라가세요.", 10000);
                 break;
             case RoomConstants.ROOM_102:
             case RoomConstants.ROOM_103:
@@ -192,11 +184,8 @@ public class BeaconImageActivity extends AppCompatActivity {
             case RoomConstants.ROOM_106:
             case RoomConstants.ROOM_107:
             case RoomConstants.ROOM_109:
-                showToastWithCustomDuration(this, "현재 층은 2층입니다 "+" 1층으로 내려가세요", 10000);
-                endXRatio = 0.16f;
-                endYRatio = 0.5f;
+                showToastWithCustomDuration(this, "현재 층은 2층입니다. 1층으로 내려가세요.", 10000);
                 break;
-
             default:
                 Toast.makeText(this, "잘못된 강의실 번호를 입력하였습니다. 다시 입력하세요", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss(); // 비정상적인 경우 ProgressDialog 종료
@@ -208,12 +197,12 @@ public class BeaconImageActivity extends AppCompatActivity {
         int endX = (int) (endXRatio * mapBitmap.getWidth());
         int endY = (int) (endYRatio * mapBitmap.getHeight());
 
-        // Draw start and end points
-        PathDrawer.drawPoint(pathBitmap, startX, startY, Color.RED, 25);
-        PathDrawer.drawPoint(pathBitmap, endX, endY, Color.BLUE, 25);
+        // 시작점과 끝점 그리기
+        PathDrawer.drawPoint(pathBitmap, startX, startY, Color.BLUE, 25); // 출발지점은 파란색
+        PathDrawer.drawPoint(pathBitmap, endX, endY, Color.RED, 25); // 도착지점은 빨간색
 
-        // Find the path in a background thread
-        new PathFindingTask().execute(startXRatio, endYRatio, startXRatio, endYRatio);
+        // 백그라운드 스레드에서 경로 찾기
+        new PathFindingTask().execute(startXRatio, startYRatio, endXRatio, endYRatio, (float) roomNumber); // roomNumber를 float로 변환
     }
 
     private class PathFindingTask extends AsyncTask<Float, Void, List<Node>> {
@@ -223,9 +212,10 @@ public class BeaconImageActivity extends AppCompatActivity {
             float startYRatio = params[1];
             float endXRatio = params[2];
             float endYRatio = params[3];
+            int roomNumber = Math.round(params[4]); // roomNumber를 정수로 변환
 
             PathFinding pathFinding = new PathFinding(mapBitmap);
-            return pathFinding.findPath(startXRatio, startYRatio, endXRatio, endYRatio);
+            return pathFinding.findPath(startXRatio, startYRatio, endXRatio, endYRatio, roomNumber); // roomNumber 전달
         }
 
         @Override
@@ -233,17 +223,18 @@ public class BeaconImageActivity extends AppCompatActivity {
             progressDialog.dismiss(); // 작업 완료 후 ProgressDialog 종료
 
             if (path != null) {
-                PathDrawer.drawPath(pathBitmap, path);
+                PathDrawer.drawPath(pathBitmap, path); // 경로는 파란색
                 imageView.setImageBitmap(pathBitmap);
+            } else {
+                Toast.makeText(BeaconImageActivity.this, "경로를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void hideKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
         }
     }
 }

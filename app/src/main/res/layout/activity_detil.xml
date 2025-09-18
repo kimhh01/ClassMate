@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.minew.beaconset.DetilActivity">
+    tools:context="com.minew.beaconset.demo.DetilActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/detil_toolbar"

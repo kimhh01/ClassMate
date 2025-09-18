@@ -30,16 +30,11 @@ public class BeaconImageActivity2 extends AppCompatActivity {
     private ImageView imageView;
     private AutoCompleteTextView searchEditText;
     private ImageButton searchButton;
-    private ImageButton backButton; // Add ImageButton for back navigation
     private RelativeLayout parentLayout;
-    private View redDot;
-
     private Bitmap mapBitmap;
     private Bitmap pathBitmap;
-
     private int imageViewWidth;
     private int imageViewHeight;
-
     private ProgressDialog progressDialog;
 
     private void showToastWithCustomDuration(final Context context, final String message, final int duration) {
@@ -93,6 +88,7 @@ public class BeaconImageActivity2 extends AppCompatActivity {
                 }
             });
         }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -104,9 +100,6 @@ public class BeaconImageActivity2 extends AppCompatActivity {
             startActivity(intent);
             finish();  // 현재 액티비티를 종료합니다.
         });
-
-
-
 
         // Set OnClickListener for searchButton
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -201,17 +194,17 @@ public class BeaconImageActivity2 extends AppCompatActivity {
                 return;
         }
 
+        // Draw start and end points
         int startX = (int) (startXRatio * mapBitmap.getWidth());
         int startY = (int) (startYRatio * mapBitmap.getHeight());
         int endX = (int) (endXRatio * mapBitmap.getWidth());
         int endY = (int) (endYRatio * mapBitmap.getHeight());
 
-        // Draw start and end points
         PathDrawer.drawPoint(pathBitmap, startX, startY, Color.RED, 25);
         PathDrawer.drawPoint(pathBitmap, endX, endY, Color.BLUE, 25);
 
         // Find the path in a background thread
-        new PathFindingTask().execute(startXRatio, startYRatio, endXRatio, endYRatio);
+        new PathFindingTask().execute(startXRatio, startYRatio, endXRatio, endYRatio, (float) roomNumber); // roomNumber를 float로 변환하여 전달
     }
 
     private class PathFindingTask extends AsyncTask<Float, Void, List<Node>> {
@@ -221,9 +214,10 @@ public class BeaconImageActivity2 extends AppCompatActivity {
             float startYRatio = params[1];
             float endXRatio = params[2];
             float endYRatio = params[3];
+            int roomNumber = Math.round(params[4]); // roomNumber를 정수로 변환
 
             PathFinding pathFinding = new PathFinding(mapBitmap);
-            return pathFinding.findPath(startXRatio, startYRatio, endXRatio, endYRatio);
+            return pathFinding.findPath(startXRatio, startYRatio, endXRatio, endYRatio, roomNumber); // roomNumber 전달
         }
 
         @Override

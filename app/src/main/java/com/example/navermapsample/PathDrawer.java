@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+
 import java.util.List;
 
 public class PathDrawer {
@@ -14,7 +15,7 @@ public class PathDrawer {
 
         Paint paint = new Paint();
         paint.setColor(Color.RED);
-        paint.setStrokeWidth(30);
+        paint.setStrokeWidth(20);
 
         Canvas canvas = new Canvas(bitmap);
 
@@ -27,7 +28,7 @@ public class PathDrawer {
             if (distance >= 20) {
                 canvas.drawLine(from.x, from.y, to.x, to.y, paint);
                 from = to;
-                canvas.drawCircle(from.x, from.y, 15, paint); // Mark the node
+                canvas.drawCircle(from.x, from.y, 10, paint); // Mark the node
             }
         }
 
