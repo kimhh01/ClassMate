@@ -1,29 +1,91 @@
-오늘의 목표: 내부지도 핀치 확대 및 축소 기능 도입
+> **🏫 ClassMate**
 
-세부사항:
+비콘(Beacon)과 QR코드를 활용한 스마트 캠퍼스 길찾기 & 학사 도우미 앱
+(Android / Kotlin / Naver Maps API 기반)
 
--내부 안내 확대 기능 코드 변경:
-<xml파일>
-기존 activity_beacon_image.xml파일의 이미지 부분의 코드를 다음과 같이 변경
-<com.github.chrisbanes.photoview.PhotoView
-android:id="@+id/imageViewBeacon"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_below="@id/searchLayout"
-android:layout_marginTop="30dp"
-android:src="@drawable/image1" />
+> **📖 소개**
 
-<그래들:프로젝트 단위>
-allprojects의 repositories에 다음과 같이 maven을 추가
-allprojects {
-repositories {
-google()
-mavenCentral()
-maven("https://repository.map.naver.com/archive/maven/")
-maven("https://jitpack.io")  //핀치줌 사용을 위해 추가
-}
-}
+CampusNavigator는 캠퍼스 내부·외부 통합 경로 안내와
+학생 편의 기능(시간표, 학교 정보, 문의 기능 등)을 하나로 모은 스마트 캠퍼스 앱입니다.
 
-<그래들:앱 단위>
-기존 앱 단위 그래들 코드에서 다음 의존성 코드를 추가
-implementation ("com.github.chrisbanes:PhotoView:2.3.0") //이미지 핀치 줌,아웃을 위한 의존성
+비콘(Beacon)과 QR코드를 이용해 실내 위치를 인식하고,
+네이버 지도 API로 외부 건물 검색 및 경로 안내를 제공합니다.
+
+> **🎯 목표**
+
+신입생과 방문객이 낯선 캠퍼스를 빠르고 정확하게 이동하고,
+학교 생활에 필요한 모든 기능을 한 곳에서 이용할 수 있도록 돕는 것
+
+> **🌟 주요 기능**
+
+🗺️ 지도 & 길찾기	네이버 지도 API로 외부 건물 검색 및 경로 안내 제공
+🧭 내부 강의실 검색	비콘 스캔 또는 QR코드 인식으로 실내 위치 탐색 및 경로 안내
+📅 시간표 관리	수업 추가·수정·삭제 및 강의실까지의 자동 경로 안내
+🏫 학교 정보 보기	학교 인스타그램, 블로그, 유튜브, 홈페이지를 WebView로 표시
+💬 고객센터	FAQ 제공 및 SMTP 이메일 문의 기능 지원
+
+**🗺️ 1️⃣ 지도 & 길찾기**
+
+네이버 지도 API를 통해 외부 건물 검색 및 경로 안내 제공
+
+사용자는 현재 위치에서 원하는 건물까지의 이동 경로를 볼 수 있음
+
+필터링 버튼을 통해 카페, 화장실, 흡연구역 등 카테고리별로 마커 표시
+
+**🏢 2️⃣ 내부 강의실 검색**
+🧭 비콘 기반 탐색
+
+BLE 스캔으로 주변 비콘의 UUID 감지
+
+JSON 파일(buildings.json)의 매핑 정보를 참조하여 현재 건물과 위치를 파악
+
+비콘 위치를 출발점으로 하여 내부 경로를 시각적으로 표시
+
+📷 QR 코드 인식
+
+사용자가 건물 내 QR코드를 촬영하면 해당 지점이 출발점으로 설정됨
+
+이후 선택한 강의실까지의 실내 최단 경로를 계산하여 표시
+
+**📅 3️⃣ 시간표 관리**
+
+사용자가 직접 수업을 추가하고, 수정·삭제 가능
+
+시간표 클릭 시 해당 수업의 강의실 위치로 자동 경로 안내
+
+데이터는 SharedPreferences + Gson을 이용해 로컬에 저장
+
+**🏫 4️⃣ 학교 정보**
+
+학교의 주요 온라인 채널을 앱 내부 WebView로 바로 확인할 수 있습니다.
+
+**💬 5️⃣ 고객센터**
+
+FAQ: 자주 묻는 질문과 답변을 목록 형태로 제공
+
+문의하기: SMTP 프로토콜을 이용해 개발자 이메일로 문의 전송
+
+> **🛠️ 기술 스택**
+
+| 구분         | 사용 기술                                      |
+| ---------- | ------------------------------------------ |
+| **언어**     | Kotlin, Java, Xml                                     |
+| **지도**     | Naver Maps SDK                             |
+| **실내 탐색**  | BLE API (비콘 스캔), ZXing (QR 코드 인식)          |
+| **데이터 관리** | JSON             |
+| **이메일 송신** | SMTP (JavaMail)                            |
+| **UI 구성**  | ConstraintLayout, GridLayout, RecyclerView |
+| **기타**     | ViewPager, WebView, DialogFragment         |
+
+> **🔐 필수 권한**
+
+| 권한                                    | 용도               
+| -------------------------------------  | ---------------- 
+| `ACCESS_FINE_LOCATION`                 | 비콘 스캔 및 지도 경로 표시 
+| `BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`  | 비콘 탐색            
+| `CAMERA`                               | QR 코드 인식         
+| `INTERNET`                             | WebView, 이메일 전송     
+
+> **👨‍💻 개발자 정보**
+
+📧 문의: khs10049731@gmail.com
