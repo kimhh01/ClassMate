@@ -2,6 +2,7 @@ package com.example.navermapsample;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -39,6 +40,8 @@ public class DetilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detil);
+
+
 
         initView();
         initConnection();
@@ -374,4 +377,12 @@ public class DetilActivity extends AppCompatActivity {
         return str.substring(0, 8) + '-' + str.substring(8, 12) + '-' + str.substring(12, 16) + '-' + str.substring(16, 20) + '-' + str.substring(20, 32);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(DetilActivity
+                .this, MainActivity2.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // 새로운 태스크로 시작하여 이전 액티비티 스택을 지운다.
+        startActivity(intent);
+        finish(); // 현재 액티비티 종료
+    }
 }

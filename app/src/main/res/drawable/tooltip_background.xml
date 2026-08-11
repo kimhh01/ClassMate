@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="70dp"
+    android:viewportWidth="200"
+    android:viewportHeight="70">
+
+    <!-- 말풍선 본체 -->
+    <path
+        android:fillColor="#6666FF"
+        android:pathData="M10,0 h180 a10,10 0 0 1 10,10 v40 a10,10 0 0 1 -10,10 h-180 a10,10 0 0 1 -10,-10 v-40 a10,10 0 0 1 10,-10 z"/>
+
+    <!-- 말풍선 꼬리 (하단 중앙) -->
+    <path
+        android:fillColor="#6666FF"
+        android:pathData="M95,60 L100,70 L105,60 Z"/>
+</vector>

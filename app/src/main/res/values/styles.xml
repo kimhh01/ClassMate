@@ -14,4 +14,12 @@
     <style name="BeaconImageActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
+    &lt;!-- styles.xml 파일에 추가할 스타일 -->
+    &lt;style name="RoundedDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    &lt;item name="android:windowBackground">@android:color/transparent&lt;/item>
+    &lt;item name="android:windowIsFloating">true&lt;/item>
+    &lt;item name="android:windowContentOverlay">@null&lt;/item>
+    &lt;item name="android:windowSoftInputMode">stateUnspecified|adjustPan&lt;/item>
+    &lt;item name="android:windowNoTitle">true&lt;/item>
+    &lt;/style>
 </resources>

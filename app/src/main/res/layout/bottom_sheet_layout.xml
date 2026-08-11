@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 건물 이름 표시 -->
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Building Name"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <!-- 건물 주소 표시 -->
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="14sp"
+        android:textColor="#808080"/>
+
+    <!-- 전화번호 표시 -->
+    <TextView
+        android:id="@+id/telephoneTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telephone"
+        android:textSize="14sp"
+        android:textColor="#808080"/>
+
+    <!-- 건물 이미지 표시 -->
+    <ImageView
+        android:id="@+id/placeImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
+
+    <!-- 길찾기 버튼 -->
+    <Button
+        android:id="@+id/navigateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="길찾기"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_blue_button"/>
+
+</LinearLayout>

@@ -11,4 +11,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="yellow">#FFFF00</color>
+    <color name="transparent_black">#80000000</color>
+    <color name="drakgray">#5F5F5F</color>
+    <color name="blue">#0373FC</color>
+
 </resources>

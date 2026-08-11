@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_bg"
+    android:padding="20dp">
+
+    <!-- 과목 이름 -->
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="과목 이름"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:paddingBottom="12dp"/>
+
+    <!-- 교수명 -->
+    <TextView
+        android:id="@+id/dialog_professor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="교수명: 홍길동"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingBottom="4dp"/>
+
+    <!-- 장소 -->
+    <TextView
+        android:id="@+id/dialog_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장소: 공학관 101호"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingBottom="4dp"/>
+
+    <!-- 시간 -->
+    <TextView
+        android:id="@+id/dialog_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="시간: 월 10:00~12:00"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:paddingBottom="16dp"/>
+
+    <!-- 버튼들 -->
+    <Button
+        android:id="@+id/nav_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="해당 강의실로 길 안내"
+        android:background="@android:color/transparent"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/edit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수정"
+        android:background="@android:color/transparent"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="삭제"
+        android:background="@android:color/transparent"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
+</LinearLayout>

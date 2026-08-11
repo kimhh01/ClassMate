@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 배경 이미지 -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/start_background"
+        android:alpha="0.22" /> <!-- 투명도: 0.0 (완전 투명) ~ 1.0 (불투명) -->
+
+    <!-- 환영 텍스트 -->
+    <TextView
+        android:id="@+id/welcomeOneText"
+        android:layout_gravity="center"
+        android:text="환영합니다"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"/>
+
+    <TextView
+        android:id="@+id/welcomeTowText"
+        android:layout_gravity="center"
+        android:text="강의실 찾기의 친구 ClassMate입니다"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"/>
+
+    <!-- 시작 버튼 -->
+    <Button
+        android:id="@+id/startButton"
+        android:text="시작하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textSize="16dp"
+        android:layout_marginBottom="80dp"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/black"/>
+</FrameLayout>

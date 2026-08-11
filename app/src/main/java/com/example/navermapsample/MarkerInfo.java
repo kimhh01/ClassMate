@@ -1,4 +1,4 @@
-package com.example.navermapapp;
+package com.example.navermapsample;
 
 public class MarkerInfo {
     private String title;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+    <!-- 저장 버튼 -->
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="시간표 저장"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_blue_button"
+        android:textColor="@android:color/white" />
+
+    <!-- 삭제 버튼 (간격을 두고 배치) -->
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="시간표 삭제"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_gray_button"
+        android:textColor="@android:color/white" />
+</LinearLayout>
+    </merge>
